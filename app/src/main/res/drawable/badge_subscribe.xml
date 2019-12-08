@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ (C) Copyright 2017 Saukya Wellness (Pvt) Limited.
+  ~ All Rights Reserved.
+  ~
+  ~ These materials are unpublished, proprietary, confidential source code of
+  ~ Saukya Wellness (Pvt) Limited and constitute a TRADE SECRET
+  ~ of Saukya Wellness (Pvt) Limited.
+  ~
+  ~ Saukya Wellness (Pvt) Limited retains all title to and intellectual
+  ~ property rights in these materials.
+  -->
+
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@color/colorAccent">
+
+    </solid>
+
+    <corners android:radius="9dp"></corners>
+
+</shape>

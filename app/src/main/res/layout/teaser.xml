@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/teaserTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Title"/>
+
+        <TextView
+                android:id="@+id/teaserText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Text"/>
+
+        <TextView
+                android:id="@+id/paidOrFreeStatusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="free content"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone"/>
+
+        <TextView
+                android:id="@+id/buySubscriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_subscribe"
+                android:text="@string/teaser_list_item_buy_subscription"
+                android:textColor="@color/cardview_light_background"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:visibility="gone"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+    <!--<ImageView-->
+            <!--android:src="@drawable/divider"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" android:contentDescription="TODO"/>-->
+
+</LinearLayout>
