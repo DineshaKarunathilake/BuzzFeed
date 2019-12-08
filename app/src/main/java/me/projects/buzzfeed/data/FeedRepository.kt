@@ -1,59 +1,58 @@
 package me.projects.buzzfeed.data
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.GsonBuilder
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import android.content.res.Resources
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 
-
-
-
-//class HeadlineRepository private constructor (private val headlineDao: HeadlineDao) {
-//
-//    fun getHeadlineData() = headlineDao.getHeadlineData()
-//
-//    companion object {
-//
-//        @Volatile private var instance: HeadlineRepository? = null
-//
-//        fun getInstance(quoteDao: HeadlineDao) =
-//            instance ?: synchronized(this) {
-//                instance ?: HeadlineRepository(quoteDao).also { instance = it }
-//            }
-//    }
-//
-//}
-
-class HeadlineRepository private constructor () {
+class FeedRepository private constructor() {
 
     private var gson: Gson? = null
-    private var headline = MutableLiveData<Headline?>()
+    private var feed = MutableLiveData<Feed?>()
 
     companion object {
 
-        @Volatile private var instance: HeadlineRepository? = null
+        @Volatile
+        private var instance: FeedRepository? = null
 
         fun getInstance() =
             instance ?: synchronized(this) {
-                instance ?: HeadlineRepository().also { instance = it }
+                instance ?: FeedRepository().also { instance = it }
             }
     }
 
-    fun getHeadlineData(): LiveData<Headline> {
-
-//        val headlineSring: String = androidContext.assets.open("headline.json").bufferedReader().use {it.readText()}
+    fun getFeedData(): LiveData<Feed> {
 
         val gsonBuilder = GsonBuilder()
         gson = gsonBuilder.create()
+        feed = MutableLiveData(gson?.fromJson(getFeedString(), Feed::class.java))
 
-        headline =  MutableLiveData(gson?.fromJson(getHeadlineString(), Headline::class.java))
-
-        return headline as LiveData<Headline>
+        return feed as LiveData<Feed>
     }
 
-    fun getHeadlineString(): String {
+    private fun getFeedString(): String {
+//
+////        val file = "res/raw/feed.txt"
+//        val file = "assets/feed.json"
+//
+//
+//        val inputStream =
+//            this.javaClass.classLoader.getResourceAsStream(file)
+////        Resources.getSystem().assets.open("feed.json")
+//
+//        val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+//        val feed = StringBuilder()
+//        val line: String = ""
+//        while (bufferedReader.readLine() != null) {
+//            feed.append(line).append('\n')
+//        }
+//
+//        return feed.toString()
+
         return "{\n" +
                 "  \"name\": \"Headlines\",\n" +
                 "  \"teasers\": [\n" +

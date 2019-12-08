@@ -2,35 +2,36 @@ package me.projects.buzzfeed.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_headline.*
+import kotlinx.android.synthetic.main.activity_feed.*
 import me.projects.buzzfeed.R
 import me.projects.buzzfeed.data.Teaser
-import me.projects.buzzfeed.utilities.InjectorUtils
+import me.projects.buzzfeed.factory.ViewModelFactory
 import kotlin.properties.Delegates
+import android.content.Context
 
-class HeadlineActivity : AppCompatActivity() {
+
+class FeedActivity : AppCompatActivity() {
 
     private var teaserAdapter: TeaserAdapter by Delegates.notNull()
+    private val mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_headline)
-        displayHeadline()
+        setContentView(me.projects.buzzfeed.R.layout.activity_feed)
+        displayFeed()
     }
 
-    private fun displayHeadline() {
-        val factory = InjectorUtils.provideHeadlineViewModelFactory()
+    private fun displayFeed() {
+        val factory = ViewModelFactory.provideFeedViewModelFactory()
         val viewModel = ViewModelProviders.of(this, factory)
-            .get(HeadlineViewModel::class.java)
+            .get(FeedViewModel::class.java)
 
-        viewModel.getHeadline().observe(this, Observer { headline ->
-            headlineTitle.setText(headline.name)
-            setUpTeasersRecyclerView(headline.teasers)
+        viewModel.getFeed().observe(this, Observer { feed ->
+            feedTitle.text = feed.name
+            setUpTeasersRecyclerView(feed.teasers)
         })
 
 

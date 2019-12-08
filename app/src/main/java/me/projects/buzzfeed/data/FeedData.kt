@@ -9,7 +9,7 @@ data class Teaser (
     constructor(title: String, text: String, type: String): this(title, text, false, type)
 }
 
-data class Headline (
+data class Feed (
     val name: String,
     val teasers: List<Teaser>
 )

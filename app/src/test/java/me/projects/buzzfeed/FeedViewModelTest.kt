@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
-import me.projects.buzzfeed.data.Headline
-import me.projects.buzzfeed.data.HeadlineRepository
-import me.projects.buzzfeed.ui.HeadlineViewModel
+import me.projects.buzzfeed.data.Feed
+import me.projects.buzzfeed.data.FeedRepository
+import me.projects.buzzfeed.ui.FeedViewModel
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -14,23 +14,23 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 
-class HeadlineViewModelTest  {
+class FeedViewModelTest  {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: HeadlineViewModel
+    private lateinit var viewModel: FeedViewModel
 
-    private val observer: Observer<Headline> = mock()
+    private val observer: Observer<Feed> = mock()
 
     @Before
     fun before() {
-        viewModel = HeadlineViewModel(HeadlineRepository.getInstance())
-        viewModel.getHeadline().observeForever(observer)
+        viewModel = FeedViewModel(FeedRepository.getInstance())
+        viewModel.getFeed().observeForever(observer)
     }
 
     @Test
     fun getHeadline() {
-        val captor = ArgumentCaptor.forClass(Headline::class.java)
+        val captor = ArgumentCaptor.forClass(Feed::class.java)
         captor.run {
             verify(observer, times(1)).onChanged(capture())
             assertEquals("Headlines", value.name)
@@ -39,7 +39,7 @@ class HeadlineViewModelTest  {
 
     @Test
     fun testTeasersNotNull() {
-        val captor = ArgumentCaptor.forClass(Headline::class.java)
+        val captor = ArgumentCaptor.forClass(Feed::class.java)
         captor.run {
             verify(observer, times(1)).onChanged(capture())
             assertNotNull(value.teasers)

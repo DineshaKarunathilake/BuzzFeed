@@ -25,6 +25,12 @@ android {
     dataBinding{
         enabled = true
     }
+    sourceSets {
+        // Lets have two flavours to make it more clear
+        main {
+            resources.srcDirs = ['src/main/assets']
+        }
+    }
 }
 
 dependencies {
