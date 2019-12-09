@@ -16,11 +16,15 @@ import android.content.Context
 class FeedActivity : AppCompatActivity() {
 
     private var teaserAdapter: TeaserAdapter by Delegates.notNull()
-    private val mContext: Context? = null
 
+    companion object {
+        var context: Context? = null
+            internal set
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(me.projects.buzzfeed.R.layout.activity_feed)
+        context = this
         displayFeed()
     }
 
@@ -33,7 +37,6 @@ class FeedActivity : AppCompatActivity() {
             feedTitle.text = feed.name
             setUpTeasersRecyclerView(feed.teasers)
         })
-
 
     }
 
